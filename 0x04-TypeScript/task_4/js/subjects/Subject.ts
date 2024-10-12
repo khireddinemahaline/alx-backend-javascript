@@ -1,9 +1,10 @@
-namespace Subjects {
-    class Subject {
-        teacher: Teacher
 
-        setTeacher(teacher: Teacher): void {
-            this.teacher = teacher;
-        }
+namespace Subjects {
+    export class Subject {
+      teacher: Subjects.Teacher;
+  
+      set setTeacher(teacher: Subjects.Teacher) {
+        this.teacher = teacher;
+      }
     }
-}
+  }
