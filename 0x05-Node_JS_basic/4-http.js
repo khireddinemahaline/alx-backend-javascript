@@ -1,21 +1,20 @@
-// create a small server using http module
+const http = require('http');
 
-// import http module
-const { createServer } = require('node:http');
-// create a server object
+const PORT = 1245;
+const HOST = 'localhost';
+const app = http.createServer();
 
-const port = 1245;
-const hostname = 'localhost';
-const app = createServer();
+app.on('request', (_, res) => {
+  const responseText = 'Hello Holberton School!';
 
-app.on('request', (req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello Holberton School!\n');
-}
-);
+  res.setHeader('Content-Type', 'text/plain');
+  res.setHeader('Content-Length', responseText.length);
+  res.statusCode = 200;
+  res.write(Buffer.from(responseText));
+});
 
-// listen for incoming requests
-app.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
-}  );
+app.listen(PORT, HOST, () => {
+  process.stdout.write(`Server listening at -> http://${HOST}:${PORT}\n`);
+});
+
+module.exports = app;
